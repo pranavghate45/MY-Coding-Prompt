@@ -1,0 +1,271 @@
+[
+  {
+    "id": "wpp-1777963050921",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "fhf",
+    "generatedPrompt": "Create a simple website for fhf. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: fhf, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-05-05T06:37:30.921Z"
+  },
+  {
+    "id": "wpp-1777897014696",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "huikg",
+    "generatedPrompt": "Create a simple website for huikg. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: huikg, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-05-04T12:16:54.696Z"
+  },
+  {
+    "id": "wpp-1775408820718",
+    "target": "Website",
+    "siteType": "Static Website",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "Node.js + Express",
+    "database": "PostgreSQL",
+    "goal": "Generate a production-ready website structure with reusable components and conversion-focused sections.",
+    "plan": [
+      "Project: Static Website using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: Node.js + Express",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T17:07:00.718Z"
+  },
+  {
+    "id": "wpp-1775408820376",
+    "target": "Website",
+    "siteType": "Static Website",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "Node.js + Express",
+    "database": "PostgreSQL",
+    "goal": "Generate a production-ready website structure with reusable components and conversion-focused sections.",
+    "plan": [
+      "Project: Static Website using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: Node.js + Express",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T17:07:00.376Z"
+  },
+  {
+    "id": "wpp-1775408819846",
+    "target": "Website",
+    "siteType": "Static Website",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "Node.js + Express",
+    "database": "PostgreSQL",
+    "goal": "Generate a production-ready website structure with reusable components and conversion-focused sections.",
+    "plan": [
+      "Project: Static Website using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: Node.js + Express",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T17:06:59.846Z"
+  },
+  {
+    "id": "wpp-1775408818104",
+    "target": "Website",
+    "siteType": "Static Website",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "Node.js + Express",
+    "database": "PostgreSQL",
+    "goal": "Generate a production-ready website structure with reusable components and conversion-focused sections.",
+    "plan": [
+      "Project: Static Website using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: Node.js + Express",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T17:06:58.104Z"
+  },
+  {
+    "id": "wpp-1775408789323",
+    "target": "Website",
+    "siteType": "Static Website",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "Next.js API",
+    "database": "SQLite",
+    "goal": "Test from Next API",
+    "plan": [
+      "Project: Static Website using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: Next.js API",
+      "Database: SQLite",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T17:06:29.323Z"
+  },
+  {
+    "id": "wpp-1775379620131",
+    "target": "website",
+    "siteType": "Web",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind",
+    "backend": "Node.js",
+    "database": "Postgres",
+    "goal": "create a website",
+    "plan": [
+      "Project: Web using Next.js",
+      "Styling: Tailwind",
+      "Backend: Node.js",
+      "Database: Postgres",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "group": {
+      "id": "grp-1775379620131",
+      "name": "8 show",
+      "members": [
+        "myprompt@gmail.com",
+        "8 members"
+      ]
+    },
+    "createdAt": "2026-04-05T09:00:20.131Z"
+  },
+  {
+    "id": "wpp-1775378797939",
+    "target": "mnb",
+    "siteType": "Web",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind",
+    "backend": "Node.js",
+    "database": "Postgres",
+    "goal": "raerewre",
+    "plan": [
+      "Project: Web using Next.js",
+      "Styling: Tailwind",
+      "Backend: Node.js",
+      "Database: Postgres",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "group": {
+      "id": "grp-1775378797939",
+      "name": "sfsf",
+      "members": [
+        "myprompt@gmail.com",
+        "sfsf45"
+      ]
+    },
+    "createdAt": "2026-04-05T08:46:37.939Z"
+  },
+  {
+    "id": "wpp-1775373500794",
+    "target": "dbf",
+    "siteType": "Web",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind",
+    "backend": "Node.js",
+    "database": "Postgres",
+    "goal": "rweggrgdrg",
+    "plan": [
+      "Project: Web using Next.js",
+      "Styling: Tailwind",
+      "Backend: Node.js",
+      "Database: Postgres",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-04-05T07:18:20.794Z"
+  },
+  {
+    "id": "wpp-1775372103752",
+    "target": "website",
+    "siteType": "Automation",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind",
+    "backend": "Node.js",
+    "database": "Postgres",
+    "goal": "create a best website",
+    "plan": [
+      "Project: Automation using Next.js",
+      "Styling: Tailwind",
+      "Backend: Node.js",
+      "Database: Postgres",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "group": {
+      "id": "grp-1775372103752",
+      "name": "8show",
+      "members": [
+        "8"
+      ]
+    },
+    "createdAt": "2026-04-05T06:55:03.752Z"
+  }
+]

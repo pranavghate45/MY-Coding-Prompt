@@ -1,0 +1,79 @@
+# Python environments
+venv/
+env/
+.venv/
+ENV/
+.env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Package distribution
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+*.postgres
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.iml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Process IDs
+*.pid
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# ML model artifacts
+models/
+checkpoints/
+runs/
+
+# Large dataset files
+*.csv
+*.jsonl
+datasets/
+
+# OS files
+.DS_Store
+Thumbs.db

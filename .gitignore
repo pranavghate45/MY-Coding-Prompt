@@ -1,0 +1,82 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# OS files
+Thumbs.db
+__MACOSX/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Database and temporary files
+*.sqlite
+*.db
+*.sqlite3
+*.pid
+
+# Generated files
+.coverage
+htmlcov/
+
+# OS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary directories
+tmp/
+temp/

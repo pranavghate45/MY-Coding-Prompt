@@ -1,0 +1,65 @@
+# Python environments
+venv/
+env/
+.venv/
+ENV/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ML model artifacts and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.pkl
+*.joblib
+models/
+checkpoints/
+runs/
+outputs/
+
+# Dataset files
+*.csv
+*.jsonl
+*.json
+datasets/
+data/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.iml
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+wandb/
+.wandb/
+
+# Large files
+*.zip
+*.tar.gz
+*.tar
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter notebooks (optional - uncomment if you want to ignore)
+# .ipynb_checkpoints/
+# *.ipynb
+
+# GPU/CUDA related
+*.so.1

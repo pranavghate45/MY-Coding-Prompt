@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="My Prompt logo">
+	<defs>
+		<linearGradient id="mp-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" stop-color="#6366F1" />
+			<stop offset="50%" stop-color="#8B5CF6" />
+			<stop offset="100%" stop-color="#D946EF" />
+		</linearGradient>
+	</defs>
+
+	<rect x="4" y="4" width="56" height="56" rx="16" fill="url(#mp-gradient)" />
+	<path d="M32 14l5.2 12.1L49 31l-11.8 5L32 48l-5.2-12L15 31l11.8-4.9L32 14z" fill="#FFFFFF" />
+	<circle cx="46.5" cy="45.5" r="4.5" fill="#FFFFFF" opacity="0.95" />
+</svg>

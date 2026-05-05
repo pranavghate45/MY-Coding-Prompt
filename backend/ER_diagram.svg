@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <style>
+    .entity { fill:#ffffff; stroke:#1b6b36; stroke-width:4; }
+    .attr { fill:#ffffff; stroke:#1b6b36; stroke-width:2; }
+    .rel { fill:#ffffff; stroke:#1b6b36; stroke-width:2; }
+    .text { font-family: Arial, Helvetica, sans-serif; fill:#08320a; font-size:16px; }
+    .title { font-weight:700; font-size:20px; }
+    .pk { font-weight:700; }
+    .line { stroke:#1b6b36; stroke-width:2; }
+  </style>
+
+  <!-- Title -->
+  <text x="40" y="40" class="text title">ER Diagram (Chen notation) — Project</text>
+
+  <!-- Entities (rectangles) -->
+  <!-- USERS -->
+  <rect x="80" y="80" width="220" height="60" rx="6" class="entity"/>
+  <text x="190" y="120" text-anchor="middle" class="text pk">USERS</text>
+
+  <!-- CATEGORIES -->
+  <rect x="380" y="80" width="260" height="60" rx="6" class="entity"/>
+  <text x="510" y="120" text-anchor="middle" class="text pk">CATEGORIES</text>
+
+  <!-- REQUIREMENTS -->
+  <rect x="720" y="80" width="260" height="60" rx="6" class="entity"/>
+  <text x="850" y="120" text-anchor="middle" class="text pk">REQUIREMENTS</text>
+
+  <!-- QUESTIONS -->
+  <rect x="1080" y="80" width="240" height="60" rx="6" class="entity"/>
+  <text x="1200" y="120" text-anchor="middle" class="text pk">QUESTIONS</text>
+
+  <!-- ANSWERS -->
+  <rect x="1320" y="220" width="220" height="60" rx="6" class="entity"/>
+  <text x="1430" y="260" text-anchor="middle" class="text pk">ANSWERS</text>
+
+  <!-- GENERATED_PROMPTS -->
+  <rect x="80" y="300" width="320" height="60" rx="6" class="entity"/>
+  <text x="240" y="340" text-anchor="middle" class="text pk">GENERATED_PROMPTS</text>
+
+  <!-- PROMPT_SCORES -->
+  <rect x="440" y="300" width="260" height="60" rx="6" class="entity"/>
+  <text x="570" y="340" text-anchor="middle" class="text pk">PROMPT_SCORES</text>
+
+  <!-- AI_MODELS -->
+  <rect x="760" y="300" width="260" height="60" rx="6" class="entity"/>
+  <text x="890" y="340" text-anchor="middle" class="text pk">AI_MODELS</text>
+
+  <!-- CHATS -->
+  <rect x="1160" y="300" width="240" height="60" rx="6" class="entity"/>
+  <text x="1280" y="340" text-anchor="middle" class="text pk">CHATS</text>
+
+  <!-- Attributes (ovals) -->
+  <!-- USERS attributes -->
+  <ellipse cx="-" cy="-" rx="" ry="" />
+  <!-- We'll place attributes around entities -->
+
+  <!-- USERS attributes ovals -->
+  <ellipse cx="-20" cy="-20" rx="0" ry="0" style="display:none"/>
+  <ellipse cx="190" cy="40" rx="76" ry="26" class="attr"/>
+  <text x="190" y="45" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="190" cy="80" rx="76" ry="22" class="attr"/>
+  <text x="190" y="85" text-anchor="middle" class="text">name</text>
+  <ellipse cx="110" cy="120" rx="76" ry="22" class="attr"/>
+  <text x="110" y="125" text-anchor="middle" class="text">email</text>
+  <ellipse cx="270" cy="120" rx="76" ry="22" class="attr"/>
+  <text x="270" y="125" text-anchor="middle" class="text">password</text>
+  <ellipse cx="110" cy="160" rx="76" ry="22" class="attr"/>
+  <text x="110" y="165" text-anchor="middle" class="text">plan</text>
+  <ellipse cx="270" cy="160" rx="76" ry="22" class="attr"/>
+  <text x="270" y="165" text-anchor="middle" class="text">role</text>
+
+  <!-- Lines from USERS to attributes -->
+  <line x1="80" y1="110" x2="190" y2="68" class="line"/>
+  <line x1="80" y1="110" x2="190" y2="96" class="line"/>
+  <line x1="80" y1="110" x2="110" y2="108" class="line"/>
+  <line x1="300" y1="110" x2="270" y2="108" class="line"/>
+  <line x1="80" y1="110" x2="110" y2="148" class="line"/>
+  <line x1="300" y1="110" x2="270" y2="148" class="line"/>
+
+  <!-- CATEGORIES attributes -->
+  <ellipse cx="510" cy="40" rx="86" ry="26" class="attr"/>
+  <text x="510" y="45" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="460" cy="80" rx="86" ry="22" class="attr"/>
+  <text x="460" y="85" text-anchor="middle" class="text">name</text>
+  <ellipse cx="560" cy="80" rx="86" ry="22" class="attr"/>
+  <text x="560" y="85" text-anchor="middle" class="text">description</text>
+  <ellipse cx="510" cy="120" rx="86" ry="22" class="attr"/>
+  <text x="510" y="125" text-anchor="middle" class="text">icon</text>
+
+  <line x1="380" y1="110" x2="460" y2="78" class="line"/>
+  <line x1="640" y1="110" x2="560" y2="78" class="line"/>
+  <line x1="510" y1="140" x2="510" y2="120" class="line"/>
+
+  <!-- REQUIREMENTS attributes -->
+  <ellipse cx="850" cy="40" rx="86" ry="26" class="attr"/>
+  <text x="850" y="45" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="760" cy="80" rx="86" ry="22" class="attr"/>
+  <text x="760" y="85" text-anchor="middle" class="text">user_id (FK)</text>
+  <ellipse cx="940" cy="80" rx="86" ry="22" class="attr"/>
+  <text x="940" y="85" text-anchor="middle" class="text">category_id (FK)</text>
+  <ellipse cx="850" cy="120" rx="116" ry="26" class="attr"/>
+  <text x="850" y="125" text-anchor="middle" class="text">requirement_text</text>
+
+  <line x1="720" y1="110" x2="760" y2="78" class="line"/>
+  <line x1="980" y1="110" x2="940" y2="78" class="line"/>
+  <line x1="850" y1="140" x2="850" y2="120" class="line"/>
+
+  <!-- QUESTIONS attributes -->
+  <ellipse cx="1200" cy="40" rx="96" ry="26" class="attr"/>
+  <text x="1200" y="45" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="1120" cy="80" rx="86" ry="22" class="attr"/>
+  <text x="1120" y="85" text-anchor="middle" class="text">requirement_id (FK)</text>
+  <ellipse cx="1280" cy="80" rx="96" ry="22" class="attr"/>
+  <text x="1280" y="85" text-anchor="middle" class="text">question_text</text>
+  <ellipse cx="1200" cy="120" rx="86" ry="22" class="attr"/>
+  <text x="1200" y="125" text-anchor="middle" class="text">question_order</text>
+
+  <line x1="1080" y1="110" x2="1120" y2="78" class="line"/>
+  <line x1="1320" y1="110" x2="1280" y2="78" class="line"/>
+  <line x1="1200" y1="140" x2="1200" y2="120" class="line"/>
+
+  <!-- ANSWERS attributes -->
+  <ellipse cx="1430" cy="180" rx="86" ry="22" class="attr"/>
+  <text x="1430" y="185" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="1510" cy="220" rx="86" ry="22" class="attr"/>
+  <text x="1510" y="225" text-anchor="middle" class="text">question_id (FK)</text>
+  <ellipse cx="1350" cy="220" rx="96" ry="22" class="attr"/>
+  <text x="1350" y="225" text-anchor="middle" class="text">answer_text</text>
+
+  <line x1="1320" y1="250" x2="1430" y2="202" class="line"/>
+  <line x1="1160" y1="140" x2="1510" y2="208" class="line"/>
+
+  <!-- GENERATED_PROMPTS attributes -->
+  <ellipse cx="240" cy="340" rx="86" ry="26" class="attr"/>
+  <text x="240" y="345" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="160" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="160" y="385" text-anchor="middle" class="text">user_id (FK)</text>
+  <ellipse cx="320" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="320" y="385" text-anchor="middle" class="text">requirement_id (FK)</text>
+  <ellipse cx="240" cy="420" rx="140" ry="26" class="attr"/>
+  <text x="240" y="425" text-anchor="middle" class="text">final_prompt</text>
+  <ellipse cx="240" cy="460" rx="140" ry="22" class="attr"/>
+  <text x="240" y="465" text-anchor="middle" class="text">ai_response</text>
+
+  <line x1="80" y1="330" x2="160" y2="368" class="line"/>
+  <line x1="400" y1="320" x2="320" y2="368" class="line"/>
+
+  <!-- PROMPT_SCORES attributes -->
+  <ellipse cx="570" cy="340" rx="86" ry="26" class="attr"/>
+  <text x="570" y="345" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="500" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="500" y="385" text-anchor="middle" class="text">generated_prompt_id (FK)</text>
+  <ellipse cx="640" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="640" y="385" text-anchor="middle" class="text">ai_model_id (FK)</text>
+  <ellipse cx="570" cy="420" rx="86" ry="22" class="attr"/>
+  <text x="570" y="425" text-anchor="middle" class="text">score</text>
+
+  <line x1="440" y1="330" x2="500" y2="368" class="line"/>
+  <line x1="720" y1="330" x2="640" y2="368" class="line"/>
+
+  <!-- AI_MODELS attributes -->
+  <ellipse cx="890" cy="340" rx="96" ry="26" class="attr"/>
+  <text x="890" y="345" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="820" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="820" y="385" text-anchor="middle" class="text">model_name</text>
+  <ellipse cx="960" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="960" y="385" text-anchor="middle" class="text">provider</text>
+  <ellipse cx="890" cy="420" rx="96" ry="22" class="attr"/>
+  <text x="890" y="425" text-anchor="middle" class="text">is_active</text>
+
+  <line x1="760" y1="330" x2="820" y2="368" class="line"/>
+  <line x1="1020" y1="330" x2="960" y2="368" class="line"/>
+
+  <!-- CHATS attributes -->
+  <ellipse cx="1280" cy="340" rx="96" ry="26" class="attr"/>
+  <text x="1280" y="345" text-anchor="middle" class="text">id (PK)</text>
+  <ellipse cx="1200" cy="380" rx="86" ry="22" class="attr"/>
+  <text x="1200" y="385" text-anchor="middle" class="text">user_id (FK)</text>
+  <ellipse cx="1360" cy="380" rx="96" ry="22" class="attr"/>
+  <text x="1360" y="385" text-anchor="middle" class="text">prompt</text>
+  <ellipse cx="1280" cy="420" rx="120" ry="22" class="attr"/>
+  <text x="1280" y="425" text-anchor="middle" class="text">response / messages</text>
+
+  <line x1="1160" y1="330" x2="1200" y2="368" class="line"/>
+  <line x1="1400" y1="330" x2="1360" y2="368" class="line"/>
+
+  <!-- Relationships (diamonds) -->
+  <!-- USERS creates REQUIREMENTS -->
+  <g>
+    <polygon points="300,170 330,150 360,170 330,190" class="rel"/>
+    <text x="330" y="168" text-anchor="middle" class="text">creates</text>
+    <line x1="190" y1="140" x2="300" y2="170" class="line"/>
+    <line x1="720" y1="110" x2="360" y2="168" class="line"/>
+  </g>
+
+  <!-- CATEGORIES contains REQUIREMENTS -->
+  <g>
+    <polygon points="560,170 590,150 620,170 590,190" class="rel"/>
+    <text x="590" y="168" text-anchor="middle" class="text">contains</text>
+    <line x1="510" y1="140" x2="560" y2="170" class="line"/>
+    <line x1="760" y1="110" x2="620" y2="168" class="line"/>
+  </g>
+
+  <!-- REQUIREMENTS has QUESTIONS -->
+  <g>
+    <polygon points="900,170 930,150 960,170 930,190" class="rel"/>
+    <text x="930" y="168" text-anchor="middle" class="text">has</text>
+    <line x1="850" y1="140" x2="900" y2="170" class="line"/>
+    <line x1="1080" y1="110" x2="960" y2="168" class="line"/>
+  </g>
+
+  <!-- QUESTIONS has ANSWERS -->
+  <g>
+    <polygon points="1260,200 1290,180 1320,200 1290,220" class="rel"/>
+    <text x="1290" y="198" text-anchor="middle" class="text">has</text>
+    <line x1="1200" y1="140" x2="1260" y2="200" class="line"/>
+    <line x1="1320" y1="250" x2="1320" y2="210" class="line"/>
+  </g>
+
+  <!-- USERS creates GENERATED_PROMPTS -->
+  <g>
+    <polygon points="200,260 230,240 260,260 230,280" class="rel"/>
+    <text x="230" y="268" text-anchor="middle" class="text">creates</text>
+    <line x1="190" y1="140" x2="200" y2="260" class="line"/>
+    <line x1="240" y1="360" x2="260" y2="260" class="line"/>
+  </g>
+
+  <!-- REQUIREMENTS for GENERATED_PROMPTS -->
+  <g>
+    <polygon points="420,260 450,240 480,260 450,280" class="rel"/>
+    <text x="450" y="268" text-anchor="middle" class="text">for</text>
+    <line x1="720" y1="110" x2="450" y2="268" class="line"/>
+    <line x1="320" y1="360" x2="480" y2="260" class="line"/>
+  </g>
+
+  <!-- GENERATED_PROMPTS has PROMPT_SCORES -->
+  <g>
+    <polygon points="360,360 390,340 420,360 390,380" class="rel"/>
+    <text x="390" y="368" text-anchor="middle" class="text">has</text>
+    <line x1="320" y1="360" x2="360" y2="360" class="line"/>
+    <line x1="440" y1="330" x2="420" y2="360" class="line"/>
+  </g>
+
+  <!-- AI_MODELS evaluated_by PROMPT_SCORES -->
+  <g>
+    <polygon points="860,360 890,340 920,360 890,380" class="rel"/>
+    <text x="890" y="368" text-anchor="middle" class="text">evaluated_by</text>
+    <line x1="760" y1="330" x2="860" y2="360" class="line"/>
+    <line x1="640" y1="368" x2="920" y2="360" class="line"/>
+  </g>
+
+  <!-- USERS participates CHATS -->
+  <g>
+    <polygon points="1120,360 1150,340 1180,360 1150,380" class="rel"/>
+    <text x="1150" y="368" text-anchor="middle" class="text">participates</text>
+    <line x1="300" y1="140" x2="1120" y2="360" class="line"/>
+    <line x1="1160" y1="330" x2="1180" y2="360" class="line"/>
+  </g>
+
+  <!-- Footer note -->
+  <text x="40" y="1060" class="text">Note: FK fields are shown as attributes. Relationships are labeled (Chen notation).</text>
+
+</svg>

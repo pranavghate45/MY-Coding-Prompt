@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="My Prompt icon">
+  <title>My Prompt</title>
+  <rect width="120" height="120" fill="none" />
+  <g transform="translate(18,12)">
+    <!-- vertical bars arranged like the attachment (no text) -->
+    <rect x="0" y="14" width="10" height="36" rx="3" fill="#2563EB" />
+    <rect x="18" y="0" width="10" height="26" rx="3" fill="#2563EB" />
+
+    <rect x="36" y="4" width="10" height="30" rx="3" fill="#7C3AED" />
+    <rect x="54" y="20" width="10" height="18" rx="3" fill="#A78BFA" />
+
+    <rect x="72" y="0" width="10" height="40" rx="3" fill="#FB7185" />
+    <rect x="90" y="16" width="10" height="22" rx="3" fill="#F97316" />
+
+    <rect x="-6" y="30" width="10" height="10" rx="2" fill="#7C3AED" />
+    <rect x="96" y="34" width="8" height="8" rx="2" fill="#111827" opacity="0.06" />
+  </g>
+</svg>
