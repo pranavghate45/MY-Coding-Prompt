@@ -102,6 +102,9 @@ export default function SettingsPage() {
   const [activeSection, setActiveSection] = useState<SettingsSection>("general");
   const [securitySettings, setSecuritySettings] = useState<SecuritySettings>(getInitialSecuritySettings);
   const [studentTrial, setStudentTrial] = useState<StudentTrialState>(getInitialStudentTrial);
+  const [collegeId, setCollegeId] = useState("");
+  const [verificationLoading, setVerificationLoading] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
 
   const updateSecuritySetting = <K extends keyof SecuritySettings>(key: K, value: SecuritySettings[K]) => {
     setSecuritySettings((current) => ({ ...current, [key]: value }));
@@ -109,6 +112,47 @@ export default function SettingsPage() {
 
   const saveSecuritySettings = () => {
     localStorage.setItem(SECURITY_STORAGE_KEY, JSON.stringify(securitySettings));
+  };
+
+  const handleVerifyCollegeId = async () => {
+    if (!collegeId.trim()) {
+      setVerificationMessage("Please enter your college ID");
+      return;
+    }
+
+    if (!user?.id) {
+      setVerificationMessage("User not found");
+      return;
+    }
+
+    setVerificationLoading(true);
+    setVerificationMessage("");
+
+    try {
+      const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+      const res = await fetch(`${base}/auth/verify-college-id`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: user.id,
+          college_id: collegeId.trim(),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setVerificationMessage("✅ College ID verified successfully! You now have access to paid plan features.");
+        setCollegeId("");
+        // Optionally refresh user data or plan
+      } else {
+        setVerificationMessage(`❌ ${data.detail || "Verification failed"}`);
+      }
+    } catch (error) {
+      setVerificationMessage("❌ Error verifying college ID. Please try again.");
+    } finally {
+      setVerificationLoading(false);
+    }
   };
 
   const startStudentTrial = () => {
@@ -160,7 +204,7 @@ export default function SettingsPage() {
                 <label className="space-y-1.5 text-sm">
                   <span className="font-medium text-[var(--app-text)]">Workspace Name</span>
                   <input
-                    defaultValue="My Prompt"
+                    defaultValue="My Coding Prompt"
                     className="h-10 w-full rounded-xl border border-[var(--app-border)] bg-[var(--app-bg)] px-3 text-[var(--app-text)] outline-none"
                   />
                 </label>
@@ -285,6 +329,47 @@ export default function SettingsPage() {
                     {isTrialActive ? 'Trial Active' : 'Start Free Trial'}
                   </button>
                 </div>
+              </div>
+
+              {/* Student College ID Verification */}
+              <div className="mt-4 rounded-xl border border-[var(--app-border)] bg-[var(--app-surface-2)] p-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--app-text)]">Verify Student College ID</p>
+                    <p className="mt-0.5 text-xs text-[var(--app-muted)]">
+                      {user?.student_id_verified 
+                        ? `College ID verified: ${user?.college_id || "N/A"}` 
+                        : "Verify your college ID to unlock paid plan features for free"}
+                    </p>
+                  </div>
+                  {user?.student_id_verified && (
+                    <span className="rounded-full bg-green-500/20 text-green-600 px-2 py-1 text-xs font-semibold">✓ Verified</span>
+                  )}
+                </div>
+                {!user?.student_id_verified && (
+                  <div className="space-y-2">
+                    <input
+                      type="text"
+                      placeholder="Enter your college ID"
+                      value={collegeId}
+                      onChange={(e) => setCollegeId(e.target.value)}
+                      className="h-10 w-full rounded-xl border border-[var(--app-border)] bg-[var(--app-bg)] px-3 text-[var(--app-text)] outline-none"
+                      disabled={verificationLoading}
+                    />
+                    <button
+                      onClick={handleVerifyCollegeId}
+                      disabled={verificationLoading || !collegeId.trim()}
+                      className="btn btn-primary w-full"
+                    >
+                      {verificationLoading ? "Verifying..." : "Verify College ID"}
+                    </button>
+                    {verificationMessage && (
+                      <p className={`text-xs mt-2 ${verificationMessage.includes("✅") ? "text-green-600" : "text-red-600"}`}>
+                        {verificationMessage}
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="mt-4 rounded-xl border border-[var(--app-border)] bg-[var(--app-surface-2)] p-3">
@@ -442,9 +527,17 @@ export default function SettingsPage() {
               <p className="mt-1 text-sm text-[var(--app-muted)]">Access keys and automation endpoints.</p>
 
               <div className="mt-4 space-y-3">
-                <div className="rounded-xl border border-[var(--app-border)] bg-[var(--app-surface-2)] p-3">
-                  <p className="text-xs text-[var(--app-muted)]">API Key</p>
-                  <p className="mt-1 text-sm text-[var(--app-text)]">sk_live_••••••••••••••••••••••</p>
+                <div className="rounded-xl border border-[var(--app-border)] bg-[var(--app-surface-2)] p-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--app-text)]">Public Developer API Keys & Headless SDK</p>
+                    <p className="text-xs text-[var(--app-muted)]">Generate tokens, configure rate limits, and view cURL/Python code samples.</p>
+                  </div>
+                  <Link
+                    href="/settings/api-keys"
+                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl transition"
+                  >
+                    Manage Keys
+                  </Link>
                 </div>
                 <label className="space-y-1.5 text-sm">
                   <span className="font-medium text-[var(--app-text)]">Webhook URL</span>
@@ -456,7 +549,6 @@ export default function SettingsPage() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                <button className="btn btn-primary">Regenerate Key</button>
                 <button className="btn btn-secondary">Save Webhook</button>
               </div>
             </article>

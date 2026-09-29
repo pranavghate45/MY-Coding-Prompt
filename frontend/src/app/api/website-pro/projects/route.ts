@@ -15,6 +15,7 @@ export async function POST(request: Request) {
     database: string;
     goal: string;
     generatedPrompt: string;
+    generatedPrompts?: { title: string; prompt: string; locked?: boolean }[];
     generatedPromptTitle: string;
     target: string;
     group?: { name?: string; members?: string[] };
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
     database: body.database,
     goal: body.goal,
     generatedPrompt: body.generatedPrompt,
+    generatedPrompts: body.generatedPrompts,
     generatedPromptTitle: body.generatedPromptTitle,
     group: body.group,
   });

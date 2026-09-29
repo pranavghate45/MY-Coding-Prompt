@@ -40,24 +40,50 @@
 }
 
 :root[data-theme="dark"] {
-  --app-bg: #071022;
-  --app-surface: #0b1220;
-  --app-surface-2: #0f1724;
-  --app-border: rgba(255,255,255,0.04);
+  --app-bg: #0a0a0c;
+  --app-surface: #111116;
+  --app-surface-2: #16161e;
+  --app-border: rgba(255, 255, 255, 0.08);
 
-  --app-text: #e6eef8;
-  --app-muted: #9aa3b2;
+  --app-text: #f1f5f9;
+  --app-muted: #94a3b8;
 
-  --accent: #7c5cff;
-  --accent-foreground: #071022;
+  --accent: #6366f1;
+  --accent-cyan: #06b6d4;
+  --accent-foreground: #ffffff;
 
-  --card-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.1);
 
   --background: var(--app-bg);
   --foreground: var(--app-text);
-  --selection-bg: rgba(124,92,255,0.14);
-  --selection-fg: #071022;
+  --selection-bg: rgba(99, 102, 241, 0.25);
+  --selection-fg: #ffffff;
 }
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scanline {
+  animation: scanline 2.5s linear infinite;
+}
+
+.shadow-glow-indigo {
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.18), 0 0 50px rgba(99, 102, 241, 0.08);
+}
+
+.shadow-glow-cyan {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.18), 0 0 50px rgba(6, 182, 212, 0.08);
+}
+
+.glass-panel {
+  background: rgba(17, 17, 22, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 
 :root[data-theme="mix"] {
   /* Refined 'mix' theme: deep navy + purple accent */
@@ -79,6 +105,11 @@
 
   --background: var(--app-bg);
   --foreground: var(--app-text);
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -365,6 +396,58 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+}
+
+/* Theme-aware active state for build type buttons (Website / App). In light
+   theme we keep a soft pastel background; in dark/mix themes we use a subtle
+   accent-tinted surface so it doesn't appear bright/white. */
+.build-type-btn.active-build-type,
+.build-type-btn.active-build-type:focus,
+.build-type-btn.active-build-type:hover {
+  border-color: #4f46e5;
+  background: var(--active-build-bg, #eef2ff);
+  color: var(--active-build-text, var(--app-text));
+}
+
+:root {
+  --active-build-bg: #eef2ff;
+  --active-build-text: #0f1724;
+}
+
+:root[data-theme="dark"], :root[data-theme="mix"] {
+  /* darker, tinted surface for active state to avoid white boxes */
+  --active-build-bg: color-mix(in srgb, var(--accent) 12%, var(--app-surface) 88%);
+  --active-build-text: var(--app-text);
+}
+
+/* Active prompt card background (theme-aware). Light keeps pastel, dark/mix use a subtle tint. */
+:root {
+  --active-card-bg: #eef2ff;
+}
+
+:root[data-theme="dark"], :root[data-theme="mix"] {
+  --active-card-bg: color-mix(in srgb, var(--accent) 10%, var(--app-surface) 90%);
+}
+
+/* Explicit variant selection helper to ensure consistent visuals */
+.variant-selected {
+  border-color: #4f46e5 !important;
+  background: var(--active-card-bg) !important;
+  color: var(--active-build-text) !important;
+  box-shadow: 0 6px 18px rgba(79,70,229,0.06);
+}
+
+/* Generated prompt area background — light remains white, dark/mix use surface */
+:root {
+  --generated-prompt-bg: #ffffff;
+  --generated-prompt-border: #e6eef8;
+  --generated-prompt-text: #0f1724;
+}
+
+:root[data-theme="dark"], :root[data-theme="mix"] {
+  --generated-prompt-bg: color-mix(in srgb, var(--app-surface) 96%, var(--accent) 4%);
+  --generated-prompt-border: var(--app-border);
+  --generated-prompt-text: var(--app-text);
 }
 
 .ui-label {

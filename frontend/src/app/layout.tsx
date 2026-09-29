@@ -16,8 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My Prompt AI",
+  title: "My Coding Prompt AI",
+  // Visible site title — updated to match branding change
   description: "Chat-first multi-model frontend inspired by modern AI assistants",
+  
 };
 
 export default function RootLayout({

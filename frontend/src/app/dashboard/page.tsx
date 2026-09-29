@@ -24,6 +24,7 @@ export default function DashboardPage() {
   const [developerType, setDeveloperType] = useState<DeveloperType | "">("");
   const [projects, setProjects] = useState<WebsiteProProject[]>([]);
   const [loadingProjects, setLoadingProjects] = useState(false);
+  const [projectUsage, setProjectUsage] = useState<{ used: number; limit: number } | null>(null);
 
   useEffect(() => {
     if (isReady && !isAuthenticated) {
@@ -49,6 +50,18 @@ export default function DashboardPage() {
     };
 
     void loadProjects();
+
+    const loadUsage = async () => {
+      if (!isAuthenticated) return;
+      try {
+        const res = await fetch('/api/website-pro/projects/usage');
+        if (!res.ok) return;
+        const js = await res.json();
+        setProjectUsage({ used: js.used || 0, limit: js.limit || 0 });
+      } catch {}
+    };
+
+    void loadUsage();
   }, [isAuthenticated]);
 
   const normalizedProjects = useMemo<DashboardProject[]>(() => {
@@ -88,114 +101,143 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-5">
-      <section className="rounded-[28px] border border-[var(--app-border)] bg-[var(--app-surface)] p-5 shadow-sm">
-        <p className="text-xs uppercase tracking-[0.2em] text-[var(--app-muted)]">Dashboard</p>
-        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--app-text)]">Welcome back, {user?.name || "User"} 👋</h2>
-        <p className="mt-2 text-sm text-[var(--app-muted)]">Here&apos;s what&apos;s happening with your projects today.</p>
+    <div className="space-y-6 font-sans">
+      {/* Welcome Banner */}
+      <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-6 shadow-2xl backdrop-blur-xl">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-400 font-mono">Overview Dashboard</p>
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+          Welcome back, {user?.name || "Architect"} 👋
+        </h2>
+        <p className="mt-1 text-xs text-slate-400">Here&apos;s real-time telemetry and telemetry from your AI prompt projects today.</p>
 
-        <div className="mt-5 rounded-[24px] border border-[#95a3ff] bg-[linear-gradient(90deg,#2f49f4_0%,#3657ff_100%)] p-5 text-white shadow-[0_18px_50px_rgba(47,73,244,0.24)]">
+        {/* CTA Hero Card */}
+        <div className="mt-6 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-900/60 via-indigo-800/40 to-cyan-900/60 p-6 text-white shadow-xl shadow-indigo-600/10 backdrop-blur-xl">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-lg font-semibold">Ready to create your next prompt?</p>
-              <p className="mt-1 text-sm text-white/80">Start generating powerful AI prompts in seconds</p>
+              <p className="text-lg font-bold">Ready to architect your next prompt?</p>
+              <p className="mt-1 text-xs text-slate-300">Stream real-time LLM generations with multi-provider routing</p>
             </div>
-            <Link href="/prompt-generator" className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-[#3657ff] shadow-sm">
-              Create New Project
-            </Link>
+            {projectUsage && projectUsage.limit > 0 && projectUsage.used >= projectUsage.limit ? (
+              <button disabled title="You have reached your free student limit of 5 projects. Upgrade to continue creating more projects." className="inline-flex items-center justify-center rounded-xl bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-500 cursor-not-allowed">
+                Create New Project
+              </button>
+            ) : (
+              <Link href="/prompt-generator" className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white hover:bg-slate-100 px-4 py-2 text-xs font-bold text-indigo-950 shadow-lg transition transform active:scale-95">
+                <Sparkles className="w-3.5 h-3.5 text-indigo-600" /> Create New Project
+              </Link>
+            )}
           </div>
         </div>
 
-        <div className="mt-5 rounded-[24px] border border-[var(--app-border)] bg-[var(--app-surface)] p-5">
+        {/* Developer Type Configuration Card */}
+        <div className="mt-5 rounded-2xl border border-white/[0.08] bg-[#16161e] p-5 shadow-inner">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--app-muted)]">Developer type</p>
-              <h3 className="mt-1 text-lg font-semibold text-[var(--app-text)]">{developerTypeLabel}</h3>
-              <p className="mt-1 text-sm text-[var(--app-muted)]">Update this anytime to change the questions you see in project setup.</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 font-mono">Developer Persona</p>
+              <h3 className="mt-1 text-base font-bold text-white">{developerTypeLabel}</h3>
+              <p className="mt-1 text-xs text-slate-400">Update this anytime to tailor AI prompt suggestions to your tech stack.</p>
             </div>
 
             <div className="min-w-[240px]">
-              <label className="block text-xs uppercase tracking-[0.18em] text-[var(--app-muted)]">Change developer type</label>
-              <div className="relative mt-2">
+              <label className="block text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 font-mono mb-1.5">Change Persona Type</label>
+              <div className="relative">
                 <select
                   value={developerType}
                   onChange={(event) => setDeveloperType(event.target.value as DeveloperType | "")}
-                  className="w-full appearance-none rounded-xl border border-[var(--app-border)] bg-[var(--app-surface)] px-4 py-2.5 pr-10 text-sm text-[var(--app-text)] outline-none"
+                  className="w-full appearance-none rounded-xl border border-white/[0.1] bg-[#111116] px-4 py-2.5 pr-10 text-xs text-white outline-none focus:border-indigo-500 font-sans"
                 >
                   <option value="">Select a developer type</option>
                   <option value="frontend">Frontend developer</option>
                   <option value="backend">Backend developer</option>
                   <option value="full_stack">Full stack developer</option>
                 </select>
-                <ChevronDown size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--app-muted)]" />
+                <ChevronDown size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-3">
-        <article className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 shadow-sm">
-          <p className="text-xs text-[var(--app-muted)]">Total Projects</p>
+      {/* Metrics Row */}
+      <section className="grid gap-4 sm:grid-cols-3">
+        <article className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 shadow-xl">
+          <p className="text-xs text-slate-400 font-medium">Total Projects</p>
           <div className="mt-2 flex items-end justify-between gap-3">
-            <p className="text-3xl font-semibold text-[var(--app-text)]">{totalProjects}</p>
-            <FolderKanban className="text-[#d7a93d]" size={22} />
+            <p className="text-3xl font-extrabold text-white font-mono">{totalProjects}</p>
+            <div className="p-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
+              <FolderKanban size={20} />
+            </div>
           </div>
         </article>
 
-        <article className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 shadow-sm">
-          <p className="text-xs text-[var(--app-muted)]">Prompts Generated</p>
+        <article className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 shadow-xl">
+          <p className="text-xs text-slate-400 font-medium">Prompts Generated</p>
           <div className="mt-2 flex items-end justify-between gap-3">
-            <p className="text-3xl font-semibold text-[var(--app-text)]">{promptsGenerated}</p>
-            <Sparkles className="text-[#f59e0b]" size={22} />
+            <p className="text-3xl font-extrabold text-white font-mono">{promptsGenerated}</p>
+            <div className="p-2.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+              <Sparkles size={20} />
+            </div>
           </div>
         </article>
 
-        <article className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 shadow-sm">
-          <p className="text-xs text-[var(--app-muted)]">This Month</p>
+        <article className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 shadow-xl">
+          <p className="text-xs text-slate-400 font-medium">Active This Month</p>
           <div className="mt-2 flex items-end justify-between gap-3">
-            <p className="text-3xl font-semibold text-[var(--app-text)]">{thisMonth}</p>
-            <BarChart3 className="text-[#4f46e5]" size={22} />
+            <p className="text-3xl font-extrabold text-white font-mono">{thisMonth}</p>
+            <div className="p-2.5 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+              <BarChart3 size={20} />
+            </div>
           </div>
         </article>
       </section>
 
+      {/* Quick Actions Grid */}
       <section>
-        <h3 className="mb-3 text-sm font-semibold text-[var(--app-text)]">Quick Actions</h3>
-        <div className="grid gap-3 md:grid-cols-3">
-          <Link href="/prompt-generator" className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 text-center shadow-sm transition hover:-translate-y-0.5">
-            <Plus className="mx-auto text-[#8b5cf6]" size={28} />
-            <p className="mt-2 text-sm font-semibold text-[var(--app-text)]">New Project</p>
-            <p className="mt-1 text-xs text-[var(--app-muted)]">Create a new prompt project</p>
+        <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Quick Actions</h3>
+        <div className="grid gap-4 md:grid-cols-3">
+          <Link href="/prompt-generator" className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 text-center shadow-xl transition hover:border-indigo-500/40 hover:bg-[#16161e] group">
+            <div className="w-10 h-10 mx-auto rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition">
+              <Plus size={22} />
+            </div>
+            <p className="mt-3 text-sm font-bold text-white">New Prompt Project</p>
+            <p className="mt-1 text-xs text-slate-400">Create a structured prompt template</p>
           </Link>
 
-          <Link href="/projects" className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 text-center shadow-sm transition hover:-translate-y-0.5">
-            <FolderPlus className="mx-auto text-[#f59e0b]" size={28} />
-            <p className="mt-2 text-sm font-semibold text-[var(--app-text)]">View Projects</p>
-            <p className="mt-1 text-xs text-[var(--app-muted)]">Browse all your projects</p>
+          <Link href="/projects" className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 text-center shadow-xl transition hover:border-indigo-500/40 hover:bg-[#16161e] group">
+            <div className="w-10 h-10 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition">
+              <FolderPlus size={22} />
+            </div>
+            <p className="mt-3 text-sm font-bold text-white">View All Projects</p>
+            <p className="mt-1 text-xs text-slate-400">Browse saved prompts & histories</p>
           </Link>
 
-          <Link href="/billing" className="rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4 text-center shadow-sm transition hover:-translate-y-0.5">
-            <Star className="mx-auto text-[#eab308]" size={28} />
-            <p className="mt-2 text-sm font-semibold text-[var(--app-text)]">Upgrade Plan</p>
-            <p className="mt-1 text-xs text-[var(--app-muted)]">Unlock premium features</p>
+          <Link href="/billing" className="rounded-3xl border border-white/[0.08] bg-[#111116] p-5 text-center shadow-xl transition hover:border-indigo-500/40 hover:bg-[#16161e] group">
+            <div className="w-10 h-10 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition">
+              <Star size={22} />
+            </div>
+            <p className="mt-3 text-sm font-bold text-white">Upgrade Plan</p>
+            <p className="mt-1 text-xs text-slate-400">Unlock Pro tier student perks</p>
           </Link>
         </div>
       </section>
 
-      <section className="rounded-[24px] border border-[var(--app-border)] bg-[var(--app-surface)] p-5 shadow-sm">
-        <h3 className="text-sm font-semibold text-[var(--app-text)]">Recent Projects</h3>
-        <div className="mt-4 space-y-4">
-          {loadingProjects ? <p className="text-sm text-[var(--app-muted)]">Loading recent projects...</p> : null}
+      {/* Recent Projects List */}
+      <section className="rounded-3xl border border-white/[0.08] bg-[#111116] p-6 shadow-2xl">
+        <h3 className="text-sm font-bold text-white">Recent Projects</h3>
+        {projectUsage ? (
+          <p className="mt-1 text-xs text-slate-400">Projects used: <span className="text-indigo-400 font-mono font-semibold">{projectUsage.used} / {projectUsage.limit}</span></p>
+        ) : null}
+        <div className="mt-4 space-y-3">
+          {loadingProjects ? <p className="text-xs text-slate-500">Loading recent projects...</p> : null}
           {normalizedProjects.map((project) => (
-            <div key={project.id} className="flex items-center justify-between gap-4 rounded-2xl border border-[var(--app-border)] bg-[var(--app-surface)] px-4 py-3">
+            <div key={project.id} className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-[#16161e] px-4 py-3 shadow-inner">
               <div>
-                <p className="text-sm font-semibold text-[var(--app-text)]">{project.title}</p>
-                <p className="mt-1 text-xs text-[var(--app-muted)]">{project.prompts} prompts</p>
+                <p className="text-xs font-bold text-white">{project.title}</p>
+                <p className="mt-0.5 text-[10px] text-slate-400 font-mono">{project.prompts} prompts</p>
               </div>
               <div className="text-right">
-                <p className="text-xs text-[var(--app-muted)]">{project.updatedLabel}</p>
-                <span className="mt-1 inline-flex rounded-full bg-[#e8eaff] px-2.5 py-0.5 text-[11px] font-medium text-[#4f46e5]">{project.status}</span>
+                <p className="text-[10px] text-slate-500 font-mono">{project.updatedLabel}</p>
+                <span className="mt-1 inline-flex rounded-full bg-indigo-500/20 border border-indigo-500/30 px-2.5 py-0.5 text-[10px] font-semibold text-indigo-300">{project.status}</span>
               </div>
             </div>
           ))}

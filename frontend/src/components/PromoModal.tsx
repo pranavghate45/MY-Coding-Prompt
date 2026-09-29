@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { startCheckout } from "@/lib/stripeCheckout";
+import startRazorpay from "@/lib/razorpayCheckout";
 import { useTheme } from "@/components/theme-provider";
 
 type PromoConfig = {
@@ -112,7 +112,7 @@ export default function PromoModal({ open, onClose, duration, title, subtitle, d
   const secs = String(secondsLeft % 60).padStart(2, "0");
 
   // simple mapping of plan keys to numeric prices (INR)
-  const planPrices: Record<string, number> = { genz: 1, pro: 700, elite: 1999 };
+  const planPrices: Record<string, number> = { student: 0, pro: 700, elite: 1999 };
 
   // determine discount percent: prefer explicit config.discountPercent, else parse from offerText, else default 55
   const parsedDiscountPercent = (() => {
@@ -225,7 +225,7 @@ export default function PromoModal({ open, onClose, duration, title, subtitle, d
                           key={k}
                           onClick={async () => {
                             try {
-                              await startCheckout(k);
+                              await startRazorpay(k);
                             } catch (err) {
                               console.error(err);
                               alert("Could not start checkout");

@@ -14,7 +14,7 @@ export default function LandingPage() {
         <div className="app-card p-6">
           <div className="mb-2 flex items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-semibold text-[var(--app-text)]">My Prompt</h1>
+              <h1 className="text-3xl font-semibold text-[var(--app-text)]">My Coding Prompt</h1>
               <p className="mt-1 text-sm text-[var(--app-muted)]">AI chat workspace — try chat for free or sign up for pro features.</p>
             </div>
 

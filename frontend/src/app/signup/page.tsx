@@ -11,6 +11,7 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [collegeId, setCollegeId] = useState("");
   const [desiredPlan, setDesiredPlan] = useState<"free" | "paid">("free");
   const [developerType, setDeveloperType] = useState<"frontend" | "backend" | "full_stack">("full_stack");
 
@@ -37,7 +38,7 @@ export default function SignupPage() {
     }
 
     // Always create accounts as 'free' initially. Paid access requires checkout + admin approval.
-    await signup(name, email, password, "free", developerType);
+    await signup(name, email, password, "free", developerType, collegeId);
     if (desiredPlan === "paid") {
       // send user to billing to purchase
       router.push("/billing");
@@ -50,7 +51,7 @@ export default function SignupPage() {
     <div className="mx-auto w-full max-w-xl">
       <div className="ui-form-card">
         <h1 className="text-2xl font-semibold text-[var(--app-text)]">Create your account</h1>
-        <p className="mt-1 text-sm text-[var(--app-muted)]">Start using My Prompt — choose a plan to get started.</p>
+        <p className="mt-1 text-sm text-[var(--app-muted)]">Start using My Coding Prompt — choose a plan to get started.</p>
 
         <form onSubmit={onSubmit} className="mt-6 space-y-4">
           <div className="ui-section space-y-3">
@@ -91,6 +92,18 @@ export default function SignupPage() {
                   className="ui-input"
                 />
                 <span className="ui-helper">Must start with uppercase, then lowercase letters, and include at least one number and one special character.</span>
+              </label>
+
+              <label className="ui-field md:col-span-2">
+                <span className="ui-label">College ID (Optional)</span>
+                <input
+                  type="text"
+                  placeholder="Your college ID (for student plan verification)"
+                  value={collegeId}
+                  onChange={(event) => setCollegeId(event.target.value)}
+                  className="ui-input"
+                />
+                <span className="ui-helper">If you're a student, enter your college ID to unlock paid plan features for free.</span>
               </label>
             </div>
           </div>

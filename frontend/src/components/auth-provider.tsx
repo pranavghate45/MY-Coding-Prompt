@@ -17,6 +17,8 @@ export type AuthUser = {
   approved?: boolean;
   deleted?: boolean;
   emailBackup?: string | null;
+  college_id?: string | null;
+  student_id_verified?: boolean;
 };
 
 type AuthContextValue = {
@@ -25,7 +27,7 @@ type AuthContextValue = {
   isReady: boolean;
   plan: "free" | "paid";
   login: (email: string, password: string, options?: { allowAdmin?: boolean }) => Promise<boolean>;
-  signup: (name: string, email: string, password: string, plan?: "free" | "paid", developerType?: "frontend" | "backend" | "full_stack") => Promise<boolean>;
+  signup: (name: string, email: string, password: string, plan?: "free" | "paid", developerType?: "frontend" | "backend" | "full_stack", collegeId?: string) => Promise<boolean>;
   setPlan: (plan: "free" | "paid") => void;
   setPlanTier: (tier: "free" | "pro" | "elite") => void;
   logout: () => void;
@@ -95,11 +97,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // promo timer is handled inside PromoModal; do not auto-close from here
   const [editorOpen, setEditorOpen] = useState(false);
 
+  // Utility to generate compact unique ids for local-only entities.
+  const generateId = (prefix = "id") => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+
   function loadUsers(): AuthUser[] {
     try {
       const raw = localStorage.getItem(USERS_STORAGE_KEY);
       if (!raw) return [];
-      return JSON.parse(raw) as AuthUser[];
+      const parsed = JSON.parse(raw) as AuthUser[];
+      // Normalize and dedupe ids to avoid duplicate-key issues in the UI.
+      const seen = new Set<string>();
+      const normalized: AuthUser[] = parsed.map((u) => {
+        const next = { ...u } as AuthUser;
+        if (!next.id || seen.has(next.id)) {
+          next.id = generateId(next.role === 'admin' ? 'admin' : 'u');
+        }
+        seen.add(next.id);
+        return next;
+      });
+      // Persist normalized list back to storage so subsequent loads are clean and
+      // to avoid duplicate-key issues caused by old or malformed data.
+      try { localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(normalized)); } catch {}
+      return normalized;
     } catch {
       return [];
     }
@@ -122,7 +141,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (raw) {
         const parsed = JSON.parse(raw) as Partial<AuthUser>;
         setUser({
-          id: parsed.id ?? `u-${Date.now()}`,
+          id: parsed.id ?? generateId("u"),
           name: parsed.name ?? "User",
           email: parsed.email ?? "user@example.com",
           developerType: (parsed.developerType as "frontend" | "backend" | "full_stack") ?? "full_stack",
@@ -136,27 +155,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     } finally {
       setIsReady(true);
-    }
-  }, []);
-
-  // Ensure there is a default admin account for local development
-  useEffect(() => {
-    const users = loadUsers();
-    const hasAdmin = users.some((u) => u.role === "admin");
-    if (!hasAdmin) {
-      const defaultAdmin: AuthUser = {
-        id: `admin-${Date.now()}`,
-        name: "Admin",
-        email: "myprompt@gmail.com",
-        developerType: "full_stack",
-        plan: "paid",
-        planTier: "elite",
-        role: "admin",
-        apiKey: `sk-${Math.random().toString(36).slice(2, 12)}`,
-        password: "Myprompt@123",
-        approved: true,
-      };
-      saveUsers([defaultAdmin, ...users]);
     }
   }, []);
 
@@ -179,6 +177,77 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(nextUser);
     // promo display is handled explicitly on signup only
   }, []);
+
+  // Sync auth state when localStorage changes (payment flows may update auth in another window or iframe)
+  useEffect(() => {
+    const syncFromStorage = () => {
+      try {
+        const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (!raw) {
+          persist(null);
+          return;
+        }
+        const parsed = JSON.parse(raw) as Partial<AuthUser>;
+        const nextUser: AuthUser = {
+          id: parsed.id ?? generateId("u"),
+          name: parsed.name ?? "User",
+          email: parsed.email ?? "user@example.com",
+          developerType: (parsed.developerType as "frontend" | "backend" | "full_stack") ?? "full_stack",
+          plan: parsed.plan ?? "free",
+          planTier: (parsed.planTier as "free" | "pro" | "elite") ?? ((parsed.plan ?? "free") === "paid" ? "pro" : "free"),
+          role: (parsed.role as "admin" | "user") ?? "user",
+          apiKey: parsed.apiKey ?? null,
+          password: parsed.password ?? undefined,
+          approved: parsed.approved ?? false,
+        };
+        persist(nextUser);
+      } catch {
+        // ignore parse errors
+      }
+    };
+
+    const storageHandler = (e: StorageEvent) => {
+      if (!e.key) return;
+      if (e.key === AUTH_STORAGE_KEY || e.key === "my-prompt-pending-tier") {
+        syncFromStorage();
+      }
+    };
+
+    const visibilityHandler = () => {
+      if (document.visibilityState === "visible") {
+        syncFromStorage();
+      }
+    };
+
+    window.addEventListener("storage", storageHandler);
+    document.addEventListener("visibilitychange", visibilityHandler);
+    return () => {
+      window.removeEventListener("storage", storageHandler);
+      document.removeEventListener("visibilitychange", visibilityHandler);
+    };
+  }, [persist]);
+
+  // Ensure there is a default admin account for local development
+  useEffect(() => {
+    const users = loadUsers();
+    const hasAdmin = users.some((u) => u.role === "admin");
+    if (!hasAdmin) {
+      const defaultAdmin: AuthUser = {
+        id: generateId("admin"),
+        name: "Admin",
+        email: "myprompt@gmail.com",
+        developerType: "full_stack",
+        plan: "paid",
+        planTier: "elite",
+        role: "admin",
+        apiKey: `sk-${Math.random().toString(36).slice(2, 12)}`,
+        password: "Myprompt@123",
+        approved: true,
+      };
+      saveUsers([defaultAdmin, ...users]);
+    }
+  }, []);
+
 
   useEffect(() => {
     if (!user) {
@@ -261,7 +330,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       let admin = users.find((u) => u.email === DEFAULT_ADMIN_EMAIL && u.role === "admin");
       if (!admin) {
         admin = {
-          id: `admin-${Date.now()}`,
+          id: generateId("admin"),
           name: "Admin",
           email: DEFAULT_ADMIN_EMAIL,
           developerType: "full_stack",
@@ -305,6 +374,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     password: string,
     plan: "free" | "paid" = "free",
     developerType: "frontend" | "backend" | "full_stack" = "full_stack",
+    collegeId?: string,
   ) => {
     const users = loadUsers();
 
@@ -321,6 +391,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           email,
           password,
           developer_type: developerType,
+          college_id: collegeId || null,
         }),
       });
 

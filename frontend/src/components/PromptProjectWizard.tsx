@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, Code2, Copy, Crown, LayoutGrid, Lock, Sparkles, WandSparkles } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
+import PaymentModal from "@/components/PaymentModal";
 
 type WizardStep = 0 | 1 | 2 | 3;
 
@@ -57,7 +58,7 @@ const stepLabels = ["Basic Info", "Configuration", "Review", "Generate Prompt"] 
 
 export default function PromptProjectWizard() {
   const router = useRouter();
-  const { plan } = useAuth();
+  const { plan, setPlan, setPlanTier, user, isAuthenticated } = useAuth();
   const [step, setStep] = useState<WizardStep>(0);
   const [projectType, setProjectType] = useState<BuildType>("Website");
   const [projectName, setProjectName] = useState("");
@@ -177,16 +178,51 @@ export default function PromptProjectWizard() {
         throw new Error("Failed to generate prompt");
       }
 
-      const data = (await response.json()) as {
-        prompts?: PromptVariant[];
-      };
-
+      const data = (await response.json()) as { prompts?: PromptVariant[] };
       const prompts = Array.isArray(data.prompts) ? data.prompts : [];
       if (prompts.length === 0) {
         throw new Error("No prompt returned from the model");
       }
 
-      setGeneratedPrompts(prompts);
+      // Normalize prompts: ensure each variant requests code-level scaffold/snippets
+      const normalize = (p: PromptVariant, idx: number): PromptVariant => {
+        const raw = (p.prompt || "").trim();
+        const hasCodeCue = /\b(code|scaffold|file structure|pages\/|index\.|\.tsx|\.js|package.json|Dockerfile|app\/page)\b/i.test(raw);
+        const metaPrompt = /write .*prompt/i.test(raw) || /more detailed prompt/i.test(raw) || /improved version/i.test(raw);
+        const title = (p.title || promptTierTitles[idx] || "Variant").trim();
+
+        // If server already returned code-style content, keep it. If it returned a meta request
+        // (e.g., "Write a more detailed prompt..."), replace with a concrete scaffold tailored to the variant.
+        if (!metaPrompt && hasCodeCue) return p;
+
+        const goal = `${projectName.trim() || 'Project'}${description ? ' — ' + description.trim() : ''}`;
+
+        const base = `Create a ${projectType} called ${projectName || 'my-app'} using ${framework} and ${styleSystem}. Backend: ${backend}. Database: ${database}. Goal: ${goal}.
+Provide a complete starter scaffold and example code for the main app files, including folder structure, a sample ${framework} page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.`;
+
+        let variantDetails = '';
+        switch (title.toLowerCase()) {
+          case 'improved':
+            variantDetails = 'Make the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.';
+            break;
+          case 'optimized':
+            variantDetails = 'Add performance and SEO improvements: SSR/SSG choices, image optimization, route-based code-splitting, Lighthouse best-practices, and minimal profiling notes. Provide production-ready build scripts and caching suggestions.';
+            break;
+          case 'pro':
+            variantDetails = 'Produce a production-ready scaffold: environment configuration, error handling, logging/observability hooks, CI/CD hints, Dockerfile example, and recommended deployment steps. Include security best-practices (CORS, helmet, input validation).';
+            break;
+          case 'premium':
+            variantDetails = 'Provide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).';
+            break;
+          default:
+            variantDetails = 'Include helpful code examples and a runnable starter scaffold.';
+        }
+
+        const scaffold = `${base}\n\n${variantDetails}`;
+        return { title: p.title, prompt: scaffold, locked: p.locked } as PromptVariant;
+      };
+
+      setGeneratedPrompts(prompts.map(normalize));
       setSelectedPromptIndex(0);
     } catch (submitError) {
       const message = submitError instanceof DOMException && submitError.name === "AbortError"
@@ -230,11 +266,16 @@ export default function PromptProjectWizard() {
           database,
           goal: `${projectName.trim()}\n\n${description.trim()}`.trim(),
           generatedPrompt: generatedPrompt || undefined,
+          generatedPrompts: generatedPrompts.length ? generatedPrompts : undefined,
           generatedPromptTitle: generatedPrompts[selectedPromptIndex]?.title,
         }),
       });
 
       if (!response.ok) {
+        if (response.status === 403) {
+          const txt = await response.text();
+          throw new Error(txt || "You have reached your free student limit of 5 projects. Upgrade to continue creating more projects.");
+        }
         throw new Error("Failed to create project");
       }
 
@@ -259,6 +300,10 @@ export default function PromptProjectWizard() {
       setIsSubmitting(false);
     }
   };
+
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [paymentPlan, setPaymentPlan] = useState<{ name: string; price: number; key: string } | null>(null);
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
   return (
     <div className="space-y-6">
@@ -290,7 +335,7 @@ export default function PromptProjectWizard() {
                   key={item}
                   type="button"
                   onClick={() => setProjectType(item)}
-                  className={`rounded-2xl border px-4 py-3 text-left transition ${active ? "border-[#4f46e5] bg-[#eef2ff] shadow-sm" : "border-[var(--app-border)] bg-[var(--app-surface-2)] hover:border-[#4f46e5]"}`}
+                  className={`build-type-btn rounded-2xl border px-4 py-3 text-left transition ${active ? "border-[#4f46e5] active-build-type shadow-sm" : "border-[var(--app-border)] bg-[var(--app-surface-2)] hover:border-[#4f46e5]"}`}
                 >
                   <p className="text-base font-semibold text-[var(--app-text)]">{item}</p>
                   <p className="mt-1 text-sm text-[var(--app-muted)]">
@@ -392,6 +437,24 @@ export default function PromptProjectWizard() {
             </div>
           </div>
         ) : null}
+
+        <PaymentModal
+          open={paymentOpen}
+          onClose={() => setPaymentOpen(false)}
+          onPay={(details) => {
+            setPaymentOpen(false);
+            try {
+              if (paymentPlan) {
+                setPlan('paid');
+                setPlanTier(paymentPlan.key === 'elite' ? 'elite' : 'pro');
+              }
+            } catch {}
+          }}
+          plan={paymentPlan ?? { name: 'Pro', price: 16864, key: 'pro' }}
+          loading={paymentLoading}
+          loggedIn={Boolean(isAuthenticated)}
+          userEmail={user?.email}
+        />
 
         {step === 1 ? (
           <div className="grid gap-5 lg:grid-cols-2">
@@ -512,34 +575,52 @@ export default function PromptProjectWizard() {
                     const cardTone = isLocked
                       ? "border-amber-200 bg-amber-50/70"
                       : active
-                        ? "border-[#4f46e5] bg-[#eef2ff] shadow-sm"
+                        ? "border-[#4f46e5] bg-[var(--active-card-bg)] shadow-sm"
                         : "border-[var(--app-border)] bg-[var(--app-surface)]";
 
                     return (
-                      <button
+                      <div
                         key={prompt.title}
-                        type="button"
+                        role="button"
+                        tabIndex={0}
                         onClick={() => {
                           if (isLocked) return;
                           setSelectedPromptIndex(index);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            if (isLocked) return;
+                            setSelectedPromptIndex(index);
+                          }
                         }}
                         className={`relative flex h-[250px] w-full flex-col overflow-hidden rounded-2xl border p-4 text-left transition ${cardTone} ${isLocked ? "opacity-80" : "hover:border-[#4f46e5]"}`}
                       >
                         <div className="flex items-start justify-between gap-3">
                           <p className="font-semibold text-[var(--app-text)]">{prompt.title}</p>
                           {!isLocked ? (
-                            <button
-                              type="button"
+                            <span
+                              role="button"
+                              tabIndex={0}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 navigator.clipboard.writeText(prompt.prompt || "");
                                 setCopiedIndex(index);
                                 window.setTimeout(() => setCopiedIndex(null), 2000);
                               }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  (e as unknown as KeyboardEvent).stopPropagation();
+                                  navigator.clipboard.writeText(prompt.prompt || "");
+                                  setCopiedIndex(index);
+                                  window.setTimeout(() => setCopiedIndex(null), 2000);
+                                }
+                              }}
                               className="inline-flex items-center gap-2 rounded-md bg-[var(--app-surface-2)] px-2 py-1 text-xs text-[var(--app-text)]"
                             >
                               <Copy size={14} /> Copy
-                            </button>
+                            </span>
                           ) : (
                             <span className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] text-amber-700">
                               <Lock size={10} /> Premium
@@ -551,7 +632,7 @@ export default function PromptProjectWizard() {
 
                         {copiedIndex === index ? <span className="mt-3 text-xs text-emerald-700">Copied!</span> : null}
                         {isLocked ? <p className="mt-2 text-xs font-medium text-amber-700">It is improved version. Upgrade to see the prompt.</p> : null}
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
@@ -564,34 +645,52 @@ export default function PromptProjectWizard() {
                     const cardTone = isLocked
                       ? "border-amber-200 bg-amber-50/70"
                       : active
-                        ? "border-[#4f46e5] bg-[#eef2ff] shadow-sm"
+                        ? "border-[#4f46e5] bg-[var(--active-card-bg)] shadow-sm"
                         : "border-[var(--app-border)] bg-[var(--app-surface)]";
 
                     return (
-                      <button
+                      <div
                         key={prompt.title}
-                        type="button"
+                        role="button"
+                        tabIndex={0}
                         onClick={() => {
                           if (isLocked) return;
                           setSelectedPromptIndex(index);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            if (isLocked) return;
+                            setSelectedPromptIndex(index);
+                          }
                         }}
                         className={`relative flex h-[250px] w-full flex-col overflow-hidden rounded-2xl border p-4 text-left transition ${cardTone} ${isLocked ? "opacity-80" : "hover:border-[#4f46e5]"}`}
                       >
                         <div className="flex items-start justify-between gap-3">
                           <p className="font-semibold text-[var(--app-text)]">{prompt.title}</p>
                           {!isLocked ? (
-                            <button
-                              type="button"
+                            <span
+                              role="button"
+                              tabIndex={0}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 navigator.clipboard.writeText(prompt.prompt || "");
                                 setCopiedIndex(index);
                                 window.setTimeout(() => setCopiedIndex(null), 2000);
                               }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  (e as unknown as KeyboardEvent).stopPropagation();
+                                  navigator.clipboard.writeText(prompt.prompt || "");
+                                  setCopiedIndex(index);
+                                  window.setTimeout(() => setCopiedIndex(null), 2000);
+                                }
+                              }}
                               className="inline-flex items-center gap-2 rounded-md bg-[var(--app-surface-2)] px-2 py-1 text-xs text-[var(--app-text)]"
                             >
                               <Copy size={14} /> Copy
-                            </button>
+                            </span>
                           ) : (
                             <span className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] text-amber-700">
                               <Lock size={10} /> Premium
@@ -603,6 +702,87 @@ export default function PromptProjectWizard() {
 
                         {copiedIndex === index ? <span className="mt-3 text-xs text-emerald-700">Copied!</span> : null}
                         {isLocked ? <p className="mt-2 text-xs font-medium text-amber-700">It is improved version. Upgrade to see the prompt.</p> : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 rounded-[20px] border border-[var(--app-border)] bg-[var(--app-surface)] p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-[var(--app-text)]">Generated Prompt</p>
+                  <p className="mt-1 text-xs uppercase text-[var(--app-muted)]">{visiblePromptVariants[selectedPromptIndex]?.title || "Basic"}</p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <label className="text-sm text-[var(--app-muted)] flex items-center gap-2">
+                    <span className="hidden sm:inline">Variant</span>
+                    <select
+                      value={selectedPromptIndex}
+                      onChange={(e) => setSelectedPromptIndex(Number(e.target.value))}
+                      className="rounded-2xl border border-[var(--app-border)] bg-[var(--app-surface-2)] px-3 py-1 text-sm text-[var(--app-text)]"
+                    >
+                      {visiblePromptVariants.map((v, i) => (
+                        <option key={v.title} value={i}>
+                          {v.title}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const txt = generatedPrompt || visiblePromptVariants[selectedPromptIndex]?.prompt || "";
+                      navigator.clipboard.writeText(txt);
+                      setCopiedIndex(selectedPromptIndex);
+                      window.setTimeout(() => setCopiedIndex(null), 2000);
+                    }}
+                    className="rounded-2xl bg-[#4f46e5] px-3 py-1 text-sm font-medium text-white"
+                  >
+                    Copy
+                  </button>
+                  {copiedIndex === selectedPromptIndex ? <span className="text-sm text-emerald-700">Copied!</span> : null}
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <pre className="whitespace-pre-wrap rounded-[16px] border p-6 text-sm leading-7" style={{borderColor: 'var(--generated-prompt-border)', background: 'var(--generated-prompt-bg)', color: 'var(--generated-prompt-text)'}}>
+                  {generatedPrompt || visiblePromptVariants[selectedPromptIndex]?.prompt}
+                </pre>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-sm font-medium text-[var(--app-text)]">Other variants</p>
+                <div className="mt-2 flex flex-wrap gap-3">
+                  {visiblePromptVariants.slice(2, 5).map((v, i) => {
+                    const index = i + 2;
+                    const isLocked = !!v.locked && !isPaidPlan;
+                    return (
+                      <button
+                        key={v.title}
+                        type="button"
+                        onClick={() => {
+                          if (isLocked) {
+                            // open payment modal with plan mapping
+                            const mapping: Record<string, { name: string; price: number; key: string }> = {
+                              Optimized: { name: 'Pro', price: 16864, key: 'pro' },
+                              Pro: { name: 'Pro', price: 16864, key: 'pro' },
+                              Premium: { name: 'Elite', price: 1999, key: 'elite' },
+                            };
+                            const plan = mapping[v.title] ?? { name: 'Pro', price: 16864, key: 'pro' };
+                            setPaymentPlan(plan);
+                            setPaymentOpen(true);
+                            return;
+                          }
+                          setSelectedPromptIndex(index);
+                        }}
+                        className={`rounded-2xl border px-3 py-2 text-sm font-medium ${selectedPromptIndex === index ? 'variant-selected' : 'border-[var(--app-border)] bg-[var(--app-surface-2)]'}`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span>{v.title}</span>
+                        </div>
                       </button>
                     );
                   })}

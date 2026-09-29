@@ -108,8 +108,8 @@ export default function PromoEditor({ open, onClose }: { open: boolean; onClose:
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Target plans (select one or more)</label>
           <div className="mt-2 flex gap-3">
             <label className="inline-flex items-center gap-2">
-              <input type="checkbox" checked={planKeys.includes("genz")} onChange={(e) => setPlanKeys((s) => e.target.checked ? Array.from(new Set([...s, "genz"])) : s.filter(p => p !== "genz"))} />
-              <span className="text-sm text-gray-900 dark:text-gray-100">Gen-Z (₹1)</span>
+              <input type="checkbox" checked={planKeys.includes("student")} onChange={(e) => setPlanKeys((s) => e.target.checked ? Array.from(new Set([...s, "student"])) : s.filter(p => p !== "student"))} />
+              <span className="text-sm text-gray-900 dark:text-gray-100">Student Plan (₹0)</span>
             </label>
             <label className="inline-flex items-center gap-2">
               <input type="checkbox" checked={planKeys.includes("pro")} onChange={(e) => setPlanKeys((s) => e.target.checked ? Array.from(new Set([...s, "pro"])) : s.filter(p => p !== "pro"))} />

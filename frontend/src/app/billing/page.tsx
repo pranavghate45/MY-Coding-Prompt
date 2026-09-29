@@ -9,7 +9,7 @@ import PaymentModal from "@/components/PaymentModal";
 import { useEffect } from "react";
 
 export default function BillingPage() {
-  const { user } = useAuth();
+  const { user, setPlan, setPlanTier } = useAuth();
   const [isProcessing, setIsProcessing] = useState(false);
   const searchParams = useSearchParams();
   const success = searchParams?.get("success");
@@ -17,16 +17,16 @@ export default function BillingPage() {
 
   const plans = [
     {
-      key: "genz",
-      title: "Gen-Z",
+      key: "student",
+      title: "Student Plan",
       price: "₹0",
-      subtitle: "Free forever",
-      description: "Good for trying the app, but limited to the basic experience without advanced tools or priority support.",
+      subtitle: "Free with college ID verification",
+      description: "Perfect for students! Verify your college ID to unlock paid plan features. Limited to 5 project generations.",
       features: [
-        "Unlimited lightweight chats (subject to fair use)",
-        "Upload files and share links in chat",
-        "Basic image generation (limited quota)",
-        "Community support and docs",
+        "Paid plan features after college ID verification",
+        "Up to 5 projects/prompt generations",
+        "Full access to all tools and advanced features",
+        "Student support and documentation",
       ],
     },
     {
@@ -73,14 +73,36 @@ export default function BillingPage() {
   useEffect(() => {
     if (!success) return;
     try {
-      // Clear pending tier marker; real plan updates must come from backend verification.
+      // If Stripe set a pending tier, apply it locally (best-effort) so user can use paid features immediately.
+      const pending = localStorage.getItem("my-prompt-pending-tier");
+      if (pending && (pending === "pro" || pending === "elite")) {
+        try {
+          setPlan("paid");
+          setPlanTier(pending === "elite" ? "elite" : "pro");
+        } catch {}
+        localStorage.removeItem("my-prompt-pending-tier");
+        return;
+      }
+
+      // For Razorpay flow the backend verification may have updated localStorage auth; read and sync.
+      const authRaw = localStorage.getItem("my-prompt-auth-user");
+      if (authRaw) {
+        try {
+          const parsed = JSON.parse(authRaw) as { plan?: string; planTier?: string };
+          if (parsed?.plan === "paid") {
+            setPlan("paid");
+            setPlanTier(parsed.planTier === "elite" ? "elite" : "pro");
+          }
+        } catch {}
+      }
+      // Clear any leftover pending marker as a cleanup.
       localStorage.removeItem("my-prompt-pending-tier");
     } catch {
       // ignore localStorage issues
     }
   }, [success]);
 
-  const planPricesNumeric: Record<string, number> = { genz: 0, pro: 700, elite: 1999 };
+  const planPricesNumeric: Record<string, number> = { student: 0, pro: 700, elite: 1999 };
 
   async function handleSubscribe(planKey: string) {
     setIsProcessing(true);
@@ -105,6 +127,9 @@ export default function BillingPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPlan, setModalPlan] = useState<string | null>(null);
+  const [studentVerificationModal, setStudentVerificationModal] = useState(false);
+  const [studentCollegeId, setStudentCollegeId] = useState("");
+  const [studentVerificationLoading, setStudentVerificationLoading] = useState(false);
 
   // Defensive: if the global promo modal portal is present it can overlay and block
   // clicks on this page. Disable pointer-events for that portal while on Billing.
@@ -124,6 +149,77 @@ export default function BillingPage() {
     }
   }, []);
 
+  const handleSelectStudentPlan = async () => {
+    if (!user) {
+      alert("Please log in to select the Student Plan.");
+      return;
+    }
+    // Open verification modal instead of directly activating
+    setStudentVerificationModal(true);
+  };
+
+  const handleVerifyAndActivateStudentPlan = async () => {
+    if (!studentCollegeId.trim()) {
+      alert("Please enter your college ID");
+      return;
+    }
+
+    if (!user?.id) {
+      alert("Error: User ID not found. Please log in again.");
+      return;
+    }
+
+    setStudentVerificationLoading(true);
+    try {
+      const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+      const endpoint = `${base}/api/student/request-verification`;
+      
+      console.log("[StudentVerification] Request:", {
+        user_id: user.id,
+        college_email: studentCollegeId.trim(),
+        endpoint: endpoint
+      });
+      
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: parseInt(user.id),
+          college_email: studentCollegeId.trim(),
+        }),
+      });
+
+      console.log("[StudentVerification] Response status:", res.status);
+      const data = await res.json();
+      console.log("[StudentVerification] Response data:", data);
+
+      if (res.ok) {
+        console.log("[StudentVerification] ✅ OTP sent successfully");
+        alert("✅ OTP sent! Check your email for the 6-digit code.");
+        setStudentVerificationModal(false);
+        setStudentCollegeId("");
+      } else {
+        // Extract error message properly
+        const errorDetail = data?.detail || data?.message || "Verification failed";
+        const errorMsg = typeof errorDetail === 'string' ? errorDetail : JSON.stringify(errorDetail);
+        console.error("[StudentVerification] ❌ Error:", errorMsg);
+        alert(`❌ ${errorMsg}`);
+      }
+    } catch (error) {
+      // Extract actual error message from error object
+      let errorMsg = "Failed to request verification. Check your connection.";
+      if (error instanceof Error) {
+        errorMsg = error.message;
+      } else if (error && typeof error === 'object') {
+        errorMsg = JSON.stringify(error);
+      }
+      console.error("[StudentVerification] ❌ Catch error:", error, "Message:", errorMsg);
+      alert(`❌ ${errorMsg}`);
+    } finally {
+      setStudentVerificationLoading(false);
+    }
+  };
+
   const openModalForPlan = (planKey: string) => {
     if (!user) {
       alert("Please log in to upgrade your plan.");
@@ -138,6 +234,24 @@ export default function BillingPage() {
     setIsProcessing(true);
     try {
       console.log('[Billing] handleModalPay', { modalPlan, details });
+      // If details contains a `plan` field it's likely coming from the Razorpay onSuccess
+      // callback — apply the plan locally and avoid redirecting to Stripe.
+      if (details && details.plan) {
+        try {
+          // Update local auth user record as a best-effort so SPA state reflects paid tier immediately.
+          const raw = localStorage.getItem('my-prompt-auth-user');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            parsed.plan = 'paid';
+            parsed.planTier = modalPlan === 'elite' ? 'elite' : 'pro';
+            localStorage.setItem('my-prompt-auth-user', JSON.stringify(parsed));
+          }
+        } catch {}
+        setPlan('paid');
+        setPlanTier(modalPlan === 'elite' ? 'elite' : 'pro');
+        return;
+      }
+
       await startCheckout(modalPlan, details);
     } catch (err) {
       console.error(err);
@@ -208,15 +322,25 @@ export default function BillingPage() {
             </ul>
             <button
               className="cta-btn w-full disabled:opacity-60"
-              disabled={isProcessing || Boolean((user?.planTier || user?.plan) === plan.key) || plan.key === "genz"}
+              disabled={isProcessing || Boolean(
+                (plan.key === "student" && Boolean(user?.student_id_verified || (user as any)?.plan === "FREE_STUDENT")) ||
+                (plan.key === "pro" && user?.plan === "paid" && user?.planTier === "pro") ||
+                (plan.key === "elite" && user?.plan === "paid" && user?.planTier === "elite")
+              )}
               onClick={() => {
-                if (plan.key === "genz") return;
-                openModalForPlan(plan.key);
+                if (plan.key === "student") {
+                  handleSelectStudentPlan();
+                } else {
+                  openModalForPlan(plan.key);
+                }
               }}
             >
-              {plan.key === "genz"
-                ? "Free Plan"
-                : user && (user.planTier || user.plan) === plan.key
+              {plan.key === "student"
+                ? Boolean(user?.student_id_verified || (user as any)?.plan === "FREE_STUDENT")
+                  ? "Current Plan"
+                  : "Select Student Plan"
+                : (plan.key === "pro" && user?.plan === "paid" && user?.planTier === "pro") ||
+                  (plan.key === "elite" && user?.plan === "paid" && user?.planTier === "elite")
                   ? "Current Plan"
                   : isProcessing
                     ? "Processing..."
@@ -231,7 +355,7 @@ export default function BillingPage() {
             <thead>
               <tr>
                 <th className="p-3 text-left text-[var(--foreground)]">Feature</th>
-                <th className="p-3 text-[var(--foreground)]">Free</th>
+                <th className="p-3 text-[var(--foreground)]">Student</th>
                 <th className="p-3 text-[var(--foreground)]">Pro</th>
                 <th className="p-3 text-[var(--foreground)]">Elite</th>
               </tr>
@@ -273,12 +397,51 @@ export default function BillingPage() {
           Manage Billing
         </button>
       </div>
+
+      {/* Student Plan Verification Modal */}
+      {studentVerificationModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-[var(--app-surface)] rounded-lg p-6 max-w-md w-full mx-4 border border-[var(--app-border)]">
+            <h3 className="text-xl font-semibold mb-4 text-[var(--app-text)]">Verify Your College ID</h3>
+            <p className="text-sm text-[var(--app-muted)] mb-4">
+              Enter your college ID to activate the Student Plan and unlock paid features for free.
+            </p>
+            <input
+              type="text"
+              placeholder="Enter your college ID (e.g., 12345678, ABC123)"
+              value={studentCollegeId}
+              onChange={(e) => setStudentCollegeId(e.target.value)}
+              className="w-full px-3 py-2 bg-[var(--app-input)] border border-[var(--app-border)] rounded text-[var(--app-text)] placeholder-[var(--app-muted)] focus:outline-none focus:border-[var(--accent)]"
+            />
+            <div className="flex gap-3 mt-6">
+              <button
+                className="flex-1 px-4 py-2 bg-[var(--app-border)] text-[var(--app-text)] rounded hover:bg-[var(--app-border)]/50 transition"
+                onClick={() => {
+                  setStudentVerificationModal(false);
+                  setStudentCollegeId("");
+                }}
+                disabled={studentVerificationLoading}
+              >
+                Cancel
+              </button>
+              <button
+                className="flex-1 px-4 py-2 bg-[var(--accent)] text-white rounded hover:bg-[var(--accent)]/90 transition disabled:opacity-60"
+                onClick={handleVerifyAndActivateStudentPlan}
+                disabled={studentVerificationLoading || !studentCollegeId.trim()}
+              >
+                {studentVerificationLoading ? "Verifying..." : "Verify & Activate"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Payment modal */}
       <PaymentModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onPay={handleModalPay}
-        plan={{ name: modalPlan || "Pro", price: modalPlan === "pro" ? 700 : modalPlan === "elite" ? 1999 : 0, key: modalPlan || "genz" }}
+        plan={{ name: modalPlan || "Pro", price: modalPlan === "pro" ? 700 : modalPlan === "elite" ? 1999 : 0, key: modalPlan || "student" }}
         loading={isProcessing}
         loggedIn={!!user}
         userEmail={user?.email || ""}

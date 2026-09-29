@@ -1,5 +1,810 @@
 [
   {
+    "id": "wpp-1789228158354",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "wfwefef\n\nfdddf",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-09-12T15:49:18.354Z"
+  },
+  {
+    "id": "wpp-1781504757226",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "ds",
+    "generatedPrompt": "Create a production-ready prompt for ds. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for ds. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ds, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a Website called ds using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: ds."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for ds. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called ds using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Pro",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-15T06:25:57.226Z",
+    "updatedAt": "2026-06-15T06:26:05.898Z"
+  },
+  {
+    "id": "wpp-1781504150568",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "sd",
+    "generatedPrompt": "Create a Website called sd using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: sd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for sd. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: sd, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a Website called sd using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: sd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: sd."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for sd. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called sd using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: sd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-15T06:15:50.568Z",
+    "updatedAt": "2026-06-15T06:15:58.117Z"
+  },
+  {
+    "id": "wpp-1781352434150",
+    "siteType": "Mobile App",
+    "framework": "React Native",
+    "styleSystem": "NativeWind",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a App called a using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: a.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple app for a. Use React Native · NativeWind · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, Mobile App. User flow: Define the key user journey before implementation.. Platform target: App."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a App called a using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: a.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "prompt": "Create a App called a using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: a.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nAdd performance and SEO improvements: SSR/SSG choices, image optimization, route-based code-splitting, Lighthouse best-practices, and minimal profiling notes. Provide production-ready build scripts and caching suggestions.",
+        "locked": true
+      },
+      {
+        "title": "Pro",
+        "prompt": "Create a App called a using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: a.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProduce a production-ready scaffold: environment configuration, error handling, logging/observability hooks, CI/CD hints, Dockerfile example, and recommended deployment steps. Include security best-practices (CORS, helmet, input validation).",
+        "locked": true
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a App called a using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: a.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: Mobile App using React Native",
+      "Styling: NativeWind",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-13T12:07:14.150Z",
+    "updatedAt": "2026-06-13T12:07:21.244Z"
+  },
+  {
+    "id": "wpp-1781351044328",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "for",
+    "generatedPrompt": "Create a Website called for using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: for.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for for. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: for, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a Website called for using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: for.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: for."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for for. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called for using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: for.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-13T11:44:04.328Z",
+    "updatedAt": "2026-06-13T11:44:10.567Z"
+  },
+  {
+    "id": "wpp-1781350107339",
+    "siteType": "Mobile App",
+    "framework": "React Native",
+    "styleSystem": "NativeWind",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "ds",
+    "generatedPrompt": "Create a App called ds using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple app for ds. Use React Native · NativeWind · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ds, Mobile App. User flow: Define the key user journey before implementation.. Platform target: App."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a App called ds using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "prompt": "Create a App called ds using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nAdd performance and SEO improvements: SSR/SSG choices, image optimization, route-based code-splitting, Lighthouse best-practices, and minimal profiling notes. Provide production-ready build scripts and caching suggestions.",
+        "locked": true
+      },
+      {
+        "title": "Pro",
+        "prompt": "Create a App called ds using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProduce a production-ready scaffold: environment configuration, error handling, logging/observability hooks, CI/CD hints, Dockerfile example, and recommended deployment steps. Include security best-practices (CORS, helmet, input validation).",
+        "locked": true
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a App called ds using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ds.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: Mobile App using React Native",
+      "Styling: NativeWind",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-13T11:28:27.339Z",
+    "updatedAt": "2026-06-13T11:28:34.024Z"
+  },
+  {
+    "id": "wpp-1781346833645",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "s",
+    "generatedPrompt": "Create a simple website for s. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: s, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for s. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: s, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a Website called s using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: s.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: s."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for s. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called s using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: s.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-13T10:33:53.645Z",
+    "updatedAt": "2026-06-13T10:38:26.860Z"
+  },
+  {
+    "id": "wpp-1781345183636",
+    "target": "App",
+    "siteType": "Mobile App",
+    "framework": "React Native",
+    "styleSystem": "NativeWind",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "ssd",
+    "generatedPrompt": "Create a simple app for ssd. Use React Native · NativeWind · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ssd, Mobile App. User flow: Define the key user journey before implementation.. Platform target: App.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple app for ssd. Use React Native · NativeWind · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ssd, Mobile App. User flow: Define the key user journey before implementation.. Platform target: App."
+      },
+      {
+        "title": "Improved",
+        "prompt": "Create a App called ssd using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ssd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nMake the code more explicit: include a simple project folder layout, example components for the main UI (Hero, CTA), form handling, and simple unit-test examples. Prefer readable, well-commented code.",
+        "locked": false
+      },
+      {
+        "title": "Optimized",
+        "prompt": "Create a App called ssd using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ssd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nAdd performance and SEO improvements: SSR/SSG choices, image optimization, route-based code-splitting, Lighthouse best-practices, and minimal profiling notes. Provide production-ready build scripts and caching suggestions.",
+        "locked": true
+      },
+      {
+        "title": "Pro",
+        "prompt": "Create a App called ssd using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ssd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProduce a production-ready scaffold: environment configuration, error handling, logging/observability hooks, CI/CD hints, Dockerfile example, and recommended deployment steps. Include security best-practices (CORS, helmet, input validation).",
+        "locked": true
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a App called ssd using React Native and NativeWind. Backend: FastAPI. Database: PostgreSQL. Goal: ssd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample React Native page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include runnable code snippets for the most important files and minimal instructions to run locally.\n\nProvide advanced delivery: end-to-end testing strategy, deployment with a sample GitHub Actions workflow, monitoring and alerting suggestions, backup and scaling guidance, and optional paid integrations (analytics, error reporting).",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: Mobile App using React Native",
+      "Styling: NativeWind",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-13T10:06:23.637Z"
+  },
+  {
+    "id": "wpp-1781178414908",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Write a more detailed prompt for a website called a. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: a, SaaS Dashboard.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called a. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: a, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: a."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for a. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "locked": true,
+        "prompt": "Write a premium prompt for a that covers implementation, QA, deployment, and release readiness for the chosen website stack."
+      }
+    ],
+    "generatedPromptTitle": "Improved",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:46:54.908Z",
+    "updatedAt": "2026-06-11T12:21:19.825Z"
+  },
+  {
+    "id": "wpp-1781180266663",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "dsdsdsd",
+    "generatedPrompt": "Create a simple website for dsdsdsd. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: dsdsdsd, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for dsdsdsd. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: dsdsdsd, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called dsdsdsd. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: dsdsdsd, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: dsdsdsd."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for dsdsdsd. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called dsdsdsd using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: dsdsdsd.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include code snippets for the most important files and minimal instructions to run locally. This is the Premium variant — Premium should focus on premium improvements compared to Basic.",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T12:17:46.663Z",
+    "updatedAt": "2026-06-11T12:17:55.233Z"
+  },
+  {
+    "id": "wpp-1781180112696",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "ghdfsfsf",
+    "generatedPrompt": "Create a simple website for ghdfsfsf. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ghdfsfsf, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for ghdfsfsf. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: ghdfsfsf, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called ghdfsfsf. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: ghdfsfsf, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: ghdfsfsf."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for ghdfsfsf. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "prompt": "Create a Website called ghdfsfsf using Next.js and Tailwind CSS. Backend: FastAPI. Database: PostgreSQL. Goal: ghdfsfsf.\nProvide a complete starter scaffold and example code for the main app files, including folder structure, a sample Next.js page (example: pages/index.tsx or app/page.tsx), a main layout, a basic API route (example: /api/hello), Tailwind configuration, and package.json scripts to run and build the app. Include code snippets for the most important files and minimal instructions to run locally. This is the Premium variant — Premium should focus on premium improvements compared to Basic.",
+        "locked": true
+      }
+    ],
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T12:15:12.696Z",
+    "updatedAt": "2026-06-11T12:16:17.237Z"
+  },
+  {
+    "id": "wpp-1781179868315",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a production-ready prompt for a. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called a. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: a, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: a."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for a. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "locked": true,
+        "prompt": "Write a premium prompt for a that covers implementation, QA, deployment, and release readiness for the chosen website stack."
+      }
+    ],
+    "generatedPromptTitle": "Pro",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T12:11:08.315Z",
+    "updatedAt": "2026-06-11T12:11:15.802Z"
+  },
+  {
+    "id": "wpp-1781178600609",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called a. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: a, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: a."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for a. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "locked": true,
+        "prompt": "Write a premium prompt for a that covers implementation, QA, deployment, and release readiness for the chosen website stack."
+      }
+    ],
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:50:00.610Z",
+    "updatedAt": "2026-06-11T12:06:27.082Z"
+  },
+  {
+    "id": "wpp-1781178398086",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "q",
+    "generatedPrompt": "Write a premium prompt for q that covers implementation, QA, deployment, and release readiness for the chosen website stack.",
+    "generatedPrompts": [
+      {
+        "title": "Basic",
+        "locked": false,
+        "prompt": "Create a simple website for q. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: q, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website."
+      },
+      {
+        "title": "Improved",
+        "locked": false,
+        "prompt": "Write a more detailed prompt for a website called q. Include component structure, data flow, and the selected stack (Next.js · Tailwind CSS · FastAPI · PostgreSQL). Make sure the prompt asks for a polished MVP with clear deliverables and testing guidance. Features: q, SaaS Dashboard."
+      },
+      {
+        "title": "Optimized",
+        "locked": true,
+        "prompt": "Generate an optimized prompt for a website project. Require architecture decisions, performance notes, testing, and a maintainable structure using Next.js · Tailwind CSS · FastAPI · PostgreSQL. Goal: q."
+      },
+      {
+        "title": "Pro",
+        "locked": true,
+        "prompt": "Create a production-ready prompt for q. Focus on security, scaling, observability, and a strong delivery plan for website development. Stack: Next.js · Tailwind CSS · FastAPI · PostgreSQL."
+      },
+      {
+        "title": "Premium",
+        "locked": true,
+        "prompt": "Write a premium prompt for q that covers implementation, QA, deployment, and release readiness for the chosen website stack."
+      }
+    ],
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:46:38.086Z"
+  },
+  {
+    "id": "wpp-1781177911766",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:38:31.766Z"
+  },
+  {
+    "id": "wpp-1781177715367",
+    "target": "App",
+    "siteType": "Mobile App",
+    "framework": "React Native",
+    "styleSystem": "NativeWind",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "A",
+    "generatedPrompt": "Write a premium prompt for A that covers implementation, QA, deployment, and release readiness for the chosen app stack.",
+    "generatedPromptTitle": "Premium",
+    "plan": [
+      "Project: Mobile App using React Native",
+      "Styling: NativeWind",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:35:15.367Z"
+  },
+  {
+    "id": "wpp-1781177600246",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:33:20.246Z"
+  },
+  {
+    "id": "wpp-1781177535625",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:32:15.625Z"
+  },
+  {
+    "id": "wpp-1781177434710",
+    "target": "Website",
+    "siteType": "SaaS Dashboard",
+    "framework": "Next.js",
+    "styleSystem": "Tailwind CSS",
+    "backend": "FastAPI",
+    "database": "PostgreSQL",
+    "goal": "a",
+    "generatedPrompt": "Create a simple website for a. Use Next.js · Tailwind CSS · FastAPI · PostgreSQL and keep the first version focused on a clean scaffold, core pages, and the main user flow. Features: a, SaaS Dashboard. User flow: Define the key user journey before implementation.. Platform target: Website.",
+    "generatedPromptTitle": "Basic",
+    "plan": [
+      "Project: SaaS Dashboard using Next.js",
+      "Styling: Tailwind CSS",
+      "Backend: FastAPI",
+      "Database: PostgreSQL",
+      "Pages: Home, Features, Pricing, About, Contact",
+      "Components: Hero, CTA, Testimonials, FAQ, Footer",
+      "SEO: Meta tags, OG tags, sitemap, semantic headings",
+      "Performance: Image optimization, code splitting, Lighthouse targets",
+      "Conversion: Primary CTA strategy and trust elements"
+    ],
+    "createdAt": "2026-06-11T11:30:34.710Z"
+  },
+  {
     "id": "wpp-1777963050921",
     "target": "Website",
     "siteType": "SaaS Dashboard",

@@ -14,12 +14,12 @@ export function ProjectLogo({ compact = false, className = "", size }: ProjectLo
   return (
     <div className={`inline-flex items-center gap-3 ${className}`.trim()}>
       <div className={`${sizeClass} relative flex-shrink-0 rounded-lg overflow-hidden shadow-sm`} aria-hidden>
-        <Image src="/my-prompt-logo.svg" alt="My Prompt" width={computed} height={computed} className="rounded-lg" />
+        <Image src="/my-prompt-logo.svg" alt="My Coding Prompt" width={computed} height={computed} className="rounded-lg" />
       </div>
 
       {!compact ? (
         <div className="inline-flex flex-col leading-none min-w-0">
-          <span className="text-lg font-semibold text-[color:var(--foreground)] truncate">My Prompt</span>
+          <span className="text-lg font-semibold text-[color:var(--foreground)] truncate">My Coding Prompt</span>
           <span className="text-xs text-[color:var(--app-muted)]">Developer AI Studio</span>
         </div>
       ) : null}

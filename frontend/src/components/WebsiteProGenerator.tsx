@@ -5,6 +5,8 @@ import { Sparkles, Copy, Lock, Loader2, Code2, ShieldCheck, Rocket, WandSparkles
 import { useAuth } from "@/components/auth-provider";
 import { siteTypes, frameworks, styles, backends, databases, appTypes } from "@/lib/website-pro-options";
 import { useRouter } from "next/navigation";
+import { saveUniversalProject } from "@/lib/projectStore";
+
 
 type Prompt = { title: string; prompt: string; locked: boolean };
 type DeveloperType = "frontend" | "backend" | "full_stack";
@@ -627,6 +629,21 @@ export default function WebsiteProGenerator() {
       // Directly use backend response
       setPrompts(data.prompts ?? []);
       setQuestions(Array.isArray(data.questions) ? data.questions : []);
+
+      if (data.prompts && data.prompts.length > 0) {
+        const fullPromptText = data.prompts.map((p: any) => `### ${p.title}\n${p.prompt}`).join("\n\n");
+        const titleText = `${target === "Website" ? siteType || "Website" : appType || "App"} (${framework || "Stack"})`;
+        void saveUniversalProject({
+          title: titleText,
+          prompt_type: "website_wizard",
+          persona: "Architect",
+          target_model: "gpt-4o",
+          framework: framework || "Next.js",
+          raw_input: optimizedGoal || goal || "Website Pro Generator Spec",
+          generated_super_prompt: fullPromptText,
+          metadata_json: { target, siteType, framework, backend, database, features: selectedFeatures },
+        });
+      }
       if (!developerTypeOverride && (data.developerType === "frontend" || data.developerType === "backend" || data.developerType === "full_stack")) {
         setProfileDeveloperType(data.developerType);
       }
